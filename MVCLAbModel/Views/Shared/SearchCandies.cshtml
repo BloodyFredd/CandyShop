@@ -1,0 +1,18 @@
+﻿@model CandyShop.Models.CandyVM
+@using CandyShop.Models
+
+@{
+    ViewBag.Title = "Search Candies";
+}
+<h1 style="color:chocolate; font-family:'Helvetica Neue'; text-align: center; font-weight:bold; font-size: 120px;">Search a Candy</h1>
+@*here is where we activate the search of candies the info we got from the form*@
+<div class="row">
+    <form class="col-lg-6" action="SearchCandies" method="post">
+        <input class="form-control" style="font-family:Elephant" id="Text1" name="CandyName" type="text" placeholder="Enter candy name to search"/>    
+        <input class="btn btn-warning" id="Submit1" type="submit" value="Search" />
+    </form>
+</div>
+<br />
+
+@*here we display the candies we have found using a partial view*@
+     @Html.Partial("DisplayCandies", Model)

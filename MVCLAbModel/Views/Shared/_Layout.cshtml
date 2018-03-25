@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head style="background-color:chocolate">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title font-family:'Courier New'">@ViewBag.Title - Welcome to the Candy Shop!</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body background="https://i.kinja-img.com/gawker-media/image/upload/194xc7cenfqogjpg.jpg" style="background-color: darkslategrey">
+    @*we check if there is a user connected*@
+    @if (Session["User"] != null)
+    {
+        <div style="background-color:lightcoral" class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <nav class="navbar sticky-top navbar-light bg-faded">
+                    <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                        <a style="color:darkslategray; font-family:Impact" class="navbar-brand" href="/User/Logout">Logout</a>                   
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/User/CandyInventory">Candy Inventory</a></li>
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/User/SearchCandies">Search a Candy</a></li>
+                                <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/User/NewDelievery">Add a delievery</a></li>
+                                <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/User/SearchDelievery">Search a delievery</a></li>
+                            
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/">Home Page</a></li>
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/User/About">About</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    }
+    @*we check if there is a manager connected*@
+    else if (Session["Manager"] != null)
+    {
+        <div style="background-color:lightcoral" class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <nav class="navbar sticky-top navbar-light bg-faded">
+                    <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a style="color:darkslategray; font-family:Impact" class="navbar-brand" href="/Manager/NewCandy">Add Candy</a>
+                    <a style="color:darkslategray; font-family:Impact" class="navbar-brand" href="/Manager/NewOrder">Add Order</a>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/Manager/CandyInventory">Candy Inventory</a></li>
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/Manager/SearchCandies">Search a candy</a></li>
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/Manager/SearchUsers">Search a user</a></li>
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/Manager/SearchDelievery">Search a delievery</a></li>
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/Manager/DeleteDelievery">Delete a delievery</a></li>
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/Manager">Home Page</a></li>
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/Manager/Logout">Logout</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    }
+    @*if not a user and not a manager are connected*@
+    else
+    {
+        <div style="background-color:lightcoral" class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <nav class="navbar sticky-top navbar-light bg-faded">
+                    <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a style="color:darkslategray; font-family:Impact" class="navbar-brand" href="/User/Login">Sign in</a>
+                    <a style="color:darkslategray; font-family:Impact" class="navbar-brand" href="/User/NewUser">New User ? </a>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/User/CandyInventory">Candy Inventory</a></li>
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/User/SearchCandies">Search a Candy</a></li>
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/">Home Page</a></li>
+                            <li><a style="color:darkslategray; font-family:Garamond" class="navbar-brand" href="/User/About">About</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    }
+    <div class="container theme-showcase">
+        <div style="background-color:lightpink" class="jumbotron jumbotron-fluid">
+            @RenderBody()
+            <hr />
+            <footer style="color:dimgray">
+                <p>&copy; @DateTime.Now.Year - Candy Shop</p>
+            </footer>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@RenderSection("scripts", required: false)*@
+</body>
+
+</html>

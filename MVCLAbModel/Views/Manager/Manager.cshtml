@@ -1,0 +1,27 @@
+﻿@model CandyShop.Models.User
+
+@{
+    ViewBag.Title = "Manager";
+}
+@*here is where we create a table that will display our managers*@
+<h2>User</h2>
+
+<table>
+    <tr>
+        <td>Manager First Name</td>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <td>Manager Last Name</td>
+        <td>@Model.LastName</td>
+    </tr>
+    <tr>
+        <td>Manager ID</td>
+        <td>@Model.ID</td>
+    </tr>
+    <tr>
+        <td>Manager Password</td>
+        <td>@Model.Password</td>
+    </tr>
+</table>
+

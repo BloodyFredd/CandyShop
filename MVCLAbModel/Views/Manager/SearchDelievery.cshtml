@@ -1,0 +1,29 @@
+﻿@model CandyShop.Models.DelieveryVM
+@using CandyShop.Models
+
+@{
+    ViewBag.Title = "Search Delieveries";
+}
+
+<h1 style="color:chocolate; font-family:'Bookman Old Style'">Search Delievery</h1>
+<div>
+    <form action="SearchDelievery" method="post">
+        @*here is where we activate the search of delivery by the info we got from the form*@
+        <label class="radio-inline"><input type="radio" name="optradio" value="delieveryName">Delievery Name</label>
+        <label class="radio-inline"><input type="radio" name="optradio" value="delieveryID">Delievery ID</label>
+        <input class="form-control" style="font-family:Elephant" id="Text1" name="DelieveryNameOrID" type="text" placeholder="Enter Delievery ID or Name" />
+        <input class="btn btn-warning" style="font-family:Elephant" id="Submit1" type="submit" value="Search Delieveries" />
+    </form>
+</div>
+@if (ViewBag.TheResult == true)
+    //here is where we check is we found a delivery with this id
+{ <div class="alert alert-warning fade in collapse" role="alert" id="DelieveryIDexists" data-dismiss="alert">
+        <button id="bnewOrder" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Oh No!</strong> We don't have a delievery with this id or name!
+    </div>
+}
+<br />
+@*here we display the deliveries we have found using a partial view*@
+@Html.Partial("DisplayDelievery", Model)

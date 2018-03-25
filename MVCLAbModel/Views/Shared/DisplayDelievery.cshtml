@@ -1,0 +1,64 @@
+﻿@model CandyShop.Models.DelieveryVM
+@using CandyShop.Models
+
+<style type="text/css">
+    tr {
+        background-color: burlywood;
+        table-layout: auto;
+    }
+
+    th {
+        background-color: brown;
+    }
+
+    .mainpanel {
+        margin-left: 200px;
+        min-height: 500px;
+        padding: 20px;
+        padding-top: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+    }
+
+    .info th a {
+        color: black;
+        font-weight: bolder;
+        font-family: Elephant;
+    }
+</style>
+
+@*a table for dispalying all the deliveries*@
+<table id="delieveryTable" border="1">
+    <tr>
+        <th>Delievery ID</th>
+        <th>Delieveries Name</th>
+        <th>User Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+    </tr>
+    @if (Model != null)
+    {
+        if (Model.Delieveries != null)
+        {
+            foreach (Delievery obj in Model.Delieveries)
+            {
+        <tr>
+            <td>@obj.delieveryName</td>
+            <td>@obj.userName</td>
+            <td>@obj.address</td>
+            <td>@obj.phone</td>
+        </tr>
+            }
+        }
+        if (Model.Delievery != null)
+        {
+                <tr>
+                    <td>@Model.Delievery.delieveryName</td>
+                    <td>@Model.Delievery.userName</td>
+                    <td>@Model.Delievery.address</td>
+                    <td>@Model.Delievery.phone</td>
+                </tr>           
+        }
+    }
+</table>

@@ -1,0 +1,108 @@
+﻿@model CandyShop.Models.CandyVM
+@using CandyShop.Models
+
+@{
+    ViewBag.Title = "NewCandy";
+}
+
+<style type="text/css">
+    th {
+        background-color: brown;
+    }
+
+    .mainpanel {
+        margin-left: 200px;
+        min-height: 500px;
+        padding: 20px;
+        padding-top: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+    }
+
+    .info th a {
+        color: black;
+        font-weight: bolder;
+        font-family: Elephant;
+    }
+</style>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<html>
+
+<body>
+    <div>
+        <h1 style="color:chocolate; font-family:'Bookman Old Style'">New Candy</h1>
+        @*here is where we insert the info about our new candy*@
+        <form id="frmAddCandy" action="AddCandy">
+            <table>
+                <tr>
+                    <td style="font-family:Elephant">Candy Name</td>
+                    <td>@Html.TextBoxFor(m => m.Candy.CandyName) @Html.ValidationMessageFor(x => x.Candy.CandyName)</td>
+                </tr>
+                <tr>
+                    <td style="font-family:Elephant">Candy Type</td>
+                    <td>@Html.TextBoxFor(m => m.Candy.CandyType)@Html.ValidationMessageFor(x => x.Candy.CandyType)</td>
+                </tr>
+                <tr>
+                    <td style="font-family:Elephant">Candy Color</td>
+                    <td>@Html.TextBoxFor(m => m.Candy.CandyColor)@Html.ValidationMessageFor(x => x.Candy.CandyColor)</td>
+                </tr>
+            </table>
+            @*here we check if we already have a candy like we want to insert*@
+            @if (ViewBag.TheResult == true)
+            {
+                <div class="alert alert-warning fade in collapse" role="alert" data-dismiss="alert">
+                    <button id="bnewuser" type="button" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Holy guacamole!</strong> We already have a candy with this name!
+                </div>
+            }
+        </form>
+        <input class="btn btn-warning" id="AddCandy" type="button" value="Add Candy" onclick="javascript:SendData()" />
+
+    </div>
+</body>
+</html>
+<div id="status"></div>
+@*the table header for the candies*@
+<table id="candiesTable" border="1">
+    <tr>
+        <th>Candy Name</th>
+        <th>Candy Type</th>
+        <th>Candy Color</th>
+    </tr>
+</table>
+
+<script language="javascript">
+    //here is where we use json to show the table of candies asynchronically before and after the adding
+    $("#status").text("Loading, please wait.");
+    $.get("getCandiesJson", null, BindData);
+
+    function BindData(Candies) {
+        $("#candiesTable").find("tr:gt(0)").remove();
+        var tbl = $("#candiesTable");
+        for (i = 0; i < Candies.length ; i++) {
+            var newRow = "<tr>" +
+                "<td>" + Candies[i].CandyName + "</td>" +
+                "<td>" + Candies[i].CandyType + "</td>" +
+                "<td>" + Candies[i].CandyColor + "</td>" +
+                "</tr>";
+            tbl.append(newRow);
+        }
+        $("#status").text("");
+    }
+    //here is where we send the information about the candy to the function BindData
+    function SendData() {
+        $("#status").text("Saving the new candy to the database, please wait.")
+        var frmData = $("#frmAddCandy").serialize();
+        $.post("AddCandy", frmData, BindData);
+        $("#Candy_CandyName").val("");
+        $("#Candy_CandyType").val("");
+        $("#Candy_CandyColor").val("");
+    }
+
+</script>

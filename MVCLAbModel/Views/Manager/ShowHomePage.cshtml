@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "ShowHomePage";
+}
+
+<h1 style="color:chocolate; font-family:'Helvetica Neue'; text-align: center; font-weight:bold; font-size: 120px;">Candy Shop</h1>
+
+<h4 style="font-family:'Courier New';  text-align: center; font-weight:bold; color:sienna">Welcome to our Candy Shop!</h4>
+<body>
+    Hello you good looking manager, what are you doing in this nice weather at home?
+</body>
+
+@*the homepage of the manager,where once he is connected a popup will show with his name*@
+@if (TempData["Name"] != null)
+{
+    <div class="alert alert-warning fade in collapse" role="alert" data-dismiss="alert">
+        <button id="bnewuser" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Hello @TempData["Name"] !</strong> Thanks for coming!
+    </div>
+}

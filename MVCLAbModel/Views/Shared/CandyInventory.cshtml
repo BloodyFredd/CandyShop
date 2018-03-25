@@ -1,0 +1,11 @@
+﻿@model CandyShop.Models.CandyVM
+@using CandyShop.Models
+
+@{
+    ViewBag.Title = "Candy Inventory";
+}
+
+<h1 style="color:chocolate; font-family:'Bookman Old Style'">Candy Inventory</h1>
+
+@*here we display the candies we have found using a partial view*@
+@Html.Partial("DisplayCandies", Model)

@@ -1,0 +1,23 @@
+﻿@model CandyShop.Models.UserVM
+@using CandyShop.Models
+
+@{
+    ViewBag.Title = "Search User";
+}
+
+<h1 style="color:chocolate; font-family:'Bookman Old Style'">Search User</h1>
+<div>
+    <form action="SearchUsers" method="post">
+        @*here is where we activate the search of users the info we got from the form*@
+           <input class="form-control" style="font-family:Elephant" id="Text1" name="FirstName" type="text" placeholder="Enter User's First Name to search"/>
+        <input class="btn btn-warning" style="font-family:Elephant" id="Submit1" type="submit" value="Search Users" />
+    </form>
+
+</div>
+
+
+@*here we display the users we have found using a partial view*@
+    @Html.Partial("DisplayUsers",Model)
+
+
+

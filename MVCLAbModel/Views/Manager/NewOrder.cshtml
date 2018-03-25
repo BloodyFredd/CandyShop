@@ -1,0 +1,40 @@
+﻿@model CandyShop.Models.OrderVM
+@using CandyShop.Models
+
+@{
+    ViewBag.Title = "NewOrder";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<h1 style="color:chocolate; font-family:'Bookman Old Style'">New Order</h1>
+
+<form action="AddOrder" method="post">
+    @*here is where we insert the info about our new order*@
+    <table>
+        <tr>
+            <td style="font-family:Elephant">Order Name</td>
+            <td>@Html.TextBoxFor(m => m.Order.OrderName) @Html.ValidationMessageFor(x => x.Order.OrderName)</td>
+        </tr>
+        <tr>
+            <td style="font-family:Elephant">Amount</td>
+            <td>@Html.TextBoxFor(m => m.Order.orderAmount)@Html.ValidationMessageFor(x => x.Order.orderAmount)</td>
+        </tr>
+    </table>
+    <input class="btn btn-warning" id="Submit1" type="submit" value="Add Order" />
+    @*here we check if we already have an order like the one we want to insert*@
+    @if (ViewBag.TheResult == true)
+    { <div class="alert alert-warning fade in collapse" role="alert" id="OrderIDexists" data-dismiss="alert">
+        <button id="bnewOrder" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Oh No!</strong> We already have a order with this ID!
+    </div>
+    }
+</form>
+
+
+
+

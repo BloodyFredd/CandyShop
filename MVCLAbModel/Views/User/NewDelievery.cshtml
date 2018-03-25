@@ -1,0 +1,50 @@
+﻿@model CandyShop.Models.DelieveryVM
+@using CandyShop.Models
+
+@{
+    ViewBag.Title = "NewDelievery";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<h1 style="color:chocolate; font-family:'Bookman Old Style'">New Delievery</h1>
+
+<form action="AddDelievery" method="post">
+    <table>
+        @*here is where we insert the info about our new delivery*@
+        <tr>
+            <td style="font-family:Elephant">Address</td>
+            <td>@Html.TextBoxFor(m => m.Delievery.address)@Html.ValidationMessageFor(x => x.Delievery.address)</td>
+        </tr>
+        <tr>
+            <td style="font-family:Elephant">Phone</td>
+            <td>@Html.TextBoxFor(m => m.Delievery.phone)@Html.ValidationMessageFor(x => x.Delievery.phone)</td>
+        </tr>
+        <tr>
+            <td style="font-family:Elephant">Product Name</td>
+            <td>@Html.TextBoxFor(m => m.Delievery.delieveryName)@Html.ValidationMessageFor(x => x.Delievery.delieveryName)</td>
+        </tr>
+    </table>
+    <input class="btn btn-warning" id="Submit1" type="submit" value="Add Delievery" />
+    @if (ViewBag.TheResult == true)
+
+    { <div class="alert alert-warning fade in collapse" role="alert" id="DelieveryIDexists" data-dismiss="alert">
+        <button id="bnewDelievery" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Yes!</strong> You just added a new delievery in our shop! Please wait patiently.
+    </div>
+    }
+
+    @if (ViewBag.NotLogged == true)
+
+    { <div class="alert alert-warning fade in collapse" role="alert" id="DelieveryIDexists" data-dismiss="alert">
+        <button id="bnewDelievery" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>What?!</strong> You are not even logged in! Get out of here.
+    </div>
+    }
+</form>

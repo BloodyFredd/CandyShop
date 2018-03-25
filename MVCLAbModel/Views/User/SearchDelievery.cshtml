@@ -1,0 +1,21 @@
+﻿@model CandyShop.Models.DelieveryVM
+@using CandyShop.Models
+
+@{
+    ViewBag.Title = "My Delieveries";
+}
+
+<h1 style="color:chocolate; font-family:'Bookman Old Style'">My Delieveries</h1>
+    @*here is where we activate the search of delivery of the user's name*@
+<br />
+@if (ViewBag.TheResult == true)
+
+    { <div class="alert alert-warning fade in collapse" role="alert" id="DelieveryIDexists" data-dismiss="alert">
+        <button id="bnewDelievery" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Oh No!</strong> You don't have any delieveries yet!
+    </div>
+    }
+@*here we display the deliveries we have found using a partial view*@
+@Html.Partial("DisplayDelievery", Model)

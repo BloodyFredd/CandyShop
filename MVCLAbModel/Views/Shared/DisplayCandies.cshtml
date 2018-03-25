@@ -1,0 +1,55 @@
+﻿@model CandyShop.Models.CandyVM
+
+<link href="~/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-1.9.1.js"></script>
+<script src="~/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+<style type="text/css">
+    tr{
+        background-color:burlywood;
+    }
+
+    th{
+        background-color:brown;
+    }
+
+    .mainpanel {
+        margin-left: 200px;
+        min-height: 500px;
+        padding: 20px;
+        padding-top: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+    }
+
+        .info th a {
+            color: black;
+            font-weight:bolder;
+        }
+</style>
+
+@*here is where we set a webgrid object for showing the model*@
+@{
+
+    WebGrid obj = new WebGrid(Model.Candies);
+}
+
+
+@obj.GetHtml(
+    htmlAttributes: new  
+    {
+        id = "col-md-6"
+    },
+    tableStyle: "table table-bordered",
+    headerStyle: "info",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "gridrow",
+    columns: obj.Columns(
+        obj.Column("CandyName", "Candy Name"),
+        obj.Column("CandyType", "Candy Type"),
+        obj.Column("CandyColor", "Candy Color")
+        )
+ )

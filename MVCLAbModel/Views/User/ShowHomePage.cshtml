@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "ShowHomePage";
+}
+
+<h1 style="color:chocolate; font-family:'Helvetica Neue'; text-align: center; font-weight:bold; font-size: 120px;">Candy Shop</h1>
+
+<h4 style="font-family:'Courier New';  text-align: center; font-weight:bold; color:sienna">Welcome to our Candy Shop!</h4>
+<body>
+    You are more than welcome to browse our site and discover all the possibilities of our candies!
+</body>
+@*if we try to connect to a manager page we will show an error popup*@
+@if (TempData["Result"] != null)
+            {
+    if (TempData["Result"].Equals(true))
+    {
+    <div class="alert alert-warning fade in collapse" role="alert" data-dismiss="alert">
+        <button id="bnewuser" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Hey! Watch where you're going!</strong> you tried to access a private page!
+    </div>
+    }
+}
+
+
+@*the homepage of the user,where once he is connected a popup will show with his name*@
+@if (TempData["Name"] != null)
+{
+        <div class="alert alert-warning fade in collapse" role="alert" data-dismiss="alert">
+            <button id="bnewuser" type="button" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Hello @TempData["Name"] !</strong> Thanks for coming!
+        </div>
+}
+
+@*once we are logged out a popup will be shown*@
+@if (TempData["LoggedOut"] != null)
+{
+    <div class="alert alert-warning fade in collapse" role="alert" data-dismiss="alert">
+        <button id="bnewuser" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Goodbye !</strong> Have a nice day!
+    </div>
+}
